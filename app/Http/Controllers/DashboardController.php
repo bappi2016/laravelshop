@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    // create a middleware to login the admin user panel
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
+
+
     public function index()
     {
         # code...

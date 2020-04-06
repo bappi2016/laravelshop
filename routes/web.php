@@ -11,20 +11,38 @@
 |
 */
 
-// Dashboard
-Route::get('/', 'DashboardController@index');
+// Admin Dashboard Route
 
-// Product
-Route::resource('admin/products', 'ProductController');
+Route::prefix('admin')->group(function (){
 
-//Order
+    Route::middleware('auth:admin')->group(function (){
+        Route::get('/', 'DashboardController@index');
 
-Route::resource('admin/orders','OrderController');
+        // Product
+        Route::resource('/products', 'ProductController');
 
-// Order confirm and Pending action
-Route::get('/confirm/{id}','OrderController@confirm')->name('orders.confirm');
+        //Order
 
-Route::get('/pending/{id}','OrderController@pending')->name('orders.pending');
+        Route::resource('/orders','OrderController');
 
-// Users
-Route::resource('admin/users','UserController');
+        // Order confirm and Pending action
+        Route::get('/confirm/{id}','OrderController@confirm')->name('orders.confirm');
+
+        Route::get('/pending/{id}','OrderController@pending')->name('orders.pending');
+
+        // Users
+        Route::resource('/users','UserController');
+
+        // Logout
+
+        Route::get('/logout','AdminUserController@logout');
+    });
+
+    // Admin login
+
+    Route::get('/login', 'AdminUserController@index')->name('login');
+    Route::post('/login', 'AdminUserController@store');
+});
+
+
+/* Front End Route  */
