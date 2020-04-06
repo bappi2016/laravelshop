@@ -47,14 +47,14 @@
                     <div class="col-xs-7">
                         <div class="numbers">
                             <p>Products</p>
-                            $1,345
+                            {{$product->count()}}
                         </div>
                     </div>
                 </div>
                 <div class="footer">
                     <hr/>
                     <div class="stats">
-                        <i class="ti-panel"></i> Details
+                        <a href="{{ url('/admin/products') }}"><i class="ti-panel"></i> Details</a>
                     </div>
                 </div>
             </div>
@@ -72,14 +72,14 @@
                     <div class="col-xs-7">
                         <div class="numbers">
                             <p>Orders</p>
-                            23
+                            {{$order->count()}}
                         </div>
                     </div>
                 </div>
                 <div class="footer">
                     <hr/>
                     <div class="stats">
-                        <i class="ti-panel"></i> Details
+                        <a href="{{ url('/admin/orders') }}"><i class="ti-panel"></i> Details</a>
                     </div>
                 </div>
             </div>
@@ -97,14 +97,14 @@
                     <div class="col-xs-7">
                         <div class="numbers">
                             <p>Users</p>
-                            45
+                            {{$user->count()}}
                         </div>
                     </div>
                 </div>
                 <div class="footer">
                     <hr/>
                     <div class="stats">
-                        <i class="ti-panel"></i> Details
+                        <a href="{{ url('/admin/users') }}"><i class="ti-panel"></i> Details</a>
                     </div>
                 </div>
             </div>

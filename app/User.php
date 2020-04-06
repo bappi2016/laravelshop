@@ -19,6 +19,14 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+
+    // Relationship
+    // A user has many orders
+
+    public  function  order(){
+        return $this->hasMany(Order::class);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

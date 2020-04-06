@@ -21,6 +21,15 @@ class ProductController extends Controller
         return view('admin.products.create',compact('product'));
     }
 
+
+    public function show($id)
+    {
+        $product = Product::find($id);
+        return view('admin.products.details',compact('product'));
+        // view('template_name',context variable)
+
+    }
+
     public function store(Request $request)
     {
         
@@ -36,15 +45,10 @@ class ProductController extends Controller
         // upload image
 
         if($request->hasFile('image')){
-            if($request->hasFile('image')){
-                $image = $request->image;
-                $image->move('uploads',$image->getClientOriginalName());
+            $image = $request->image;
+            $image->move('uploads',$image->getClientOriginalName());
                 
-            } else {
-                $fileNameToStore = 'noimage.jpg'; // if a user didn't put an image , upload noimage.jpg instead
-            }
-
-        }
+            } 
 
         // save data in database
 
@@ -60,7 +64,7 @@ class ProductController extends Controller
         $request->session()->flash('msg','Your product has been added');
 
         // redirect 
-        return redirect('admin/products/create');
+        return redirect('admin/products');
         }
 
         public function destroy($id){

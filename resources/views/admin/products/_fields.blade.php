@@ -26,7 +26,6 @@
 
 <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
     {!! Form::label('file', 'Product Image') !!}
-
     {{ Form::file('image',['class'=>'form-control border-input', 'id'=>'image']) }}
     <div id="thumb-output" ></div>
     <span class="text-danger">{{ $errors->has('image') ? $errors->first('image') : '' }}</span>

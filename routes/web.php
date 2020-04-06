@@ -11,8 +11,20 @@
 |
 */
 
-// Dashboard 
+// Dashboard
 Route::get('/', 'DashboardController@index');
 
 // Product
 Route::resource('admin/products', 'ProductController');
+
+//Order
+
+Route::resource('admin/orders','OrderController');
+
+// Order confirm and Pending action
+Route::get('/confirm/{id}','OrderController@confirm')->name('orders.confirm');
+
+Route::get('/pending/{id}','OrderController@pending')->name('orders.pending');
+
+// Users
+Route::resource('admin/users','UserController');
