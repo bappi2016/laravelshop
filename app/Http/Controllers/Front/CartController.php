@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -63,4 +64,27 @@ class CartController extends Controller
         Cart::instance('saveForLater')->add($item->id,$item->name,1,$item->price)->associate('App\Product');
         return redirect()->back()->with('msg','The item has been saved for later');
     }
+
+
+    // Function for updating cart quantity
+
+    public function update(Request $request, $id){
+
+        $validator = Validator::make($request->all(),[
+            'quantity' => 'required|numeric|between:1,5'
+        ]);
+        if ($validator->fails()){
+            session()->flash('errors','Quantity must be between 1 and 5');
+            return response()->json(['success' => false]);
+        }
+
+        Cart::update($id,$request->quantity);
+
+        // flash a session message
+        session()->flash('msg','Quantity has been updated');
+
+        return response()->json(['success' => true]);
+    }
+
+
 }

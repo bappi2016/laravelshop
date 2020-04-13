@@ -75,6 +75,7 @@ Route::get('/cart/empty',function (){
 
 
 Route::delete('/cart/remove/{product}','Front\CartController@destroy')->name('cart.destroy');
+Route::patch('/cart/update/{product}','Front\CartController@update')->name('cart.update');
 
 Route::post('/cart/saveLater/{product}','Front\CartController@saveLater')->name('cart.saveLater');
 
@@ -82,3 +83,8 @@ Route::post('/cart/saveLater/{product}','Front\CartController@saveLater')->name(
 // Save for later
 Route::delete('/saveLater/destroy/{product}','Front\SaveLaterController@destroy')->name('saveLater.destroy');
 Route::post('/cart/moveToCart/{product}','Front\SaveLaterController@moveToCart')->name('moveToCart');
+
+
+// Checkout
+Route::get('/cart/checkout','Front\CheckoutController@index');
+Route::post('/cart/checkout','Front\CheckoutController@store')->name('checkout');

@@ -103,7 +103,7 @@
                 <!-- Save for later  -->
                 <div class="col-md-12">
                     <a href="/" class="btn btn-outline-dark">Continue Shopping</a>
-                    <a href="/checkout" class="btn btn-outline-info">Proceed to checkout</a>
+                    <a href="/cart/checkout" class="btn btn-outline-info">Proceed to checkout</a>
                     <hr>
                 </div>
                 @else
@@ -177,11 +177,12 @@
 
 @section('script')
 
+    {{--     first include our axois--}}
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
-
+    // first grab the class and assign it a variable name className
         const className = document.querySelectorAll('.quantity');
-
+    // for all the quantity which is an array we use Array.from and a foreach loop and a callback
         Array.from(className).forEach(function (el) {
             el.addEventListener('change', function () {
                 const id = el.getAttribute('data-id');
@@ -202,4 +203,21 @@
 
 
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection
